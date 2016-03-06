@@ -10,6 +10,7 @@ namespace [mine](namespace_mine.list) {
 # class Data
 
 {
+
 public:
 >	[Data](Data_ctor.cpp)();
 
@@ -19,6 +20,8 @@ private:
 >	void * [_the_data](Data_private.cpp);
 
 };
+
+} // namespace
 
 There is more we need to put here for it to work nicely.
 
