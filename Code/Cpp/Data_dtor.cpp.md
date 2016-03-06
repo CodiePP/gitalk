@@ -10,6 +10,7 @@ And its space complexity is nearing zero.
 
 Data::~Data()
 {
+	std::clog << "Data::~Data()" << std::endl;
 }
 
 ~~~

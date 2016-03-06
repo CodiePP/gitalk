@@ -12,15 +12,19 @@ namespace [mine](namespace_mine.list) {
 {
 
 public:
+
 >	// the constructor is in good shape  :thumbsup:
 
 >	[Data](Data_ctor.cpp.md)();
+
+>	[Data](Data_ctor.cpp.md)(Data const &);
 
 >	// the destructor needs more work  :point_up:
 
 >	virtual [~Data](Data_dtor.cpp.md)();
 
 private:
+
 >	// TODO: :exclamation:
 
 >	void * [_the_data](Data_private.cpp.md);
@@ -30,9 +34,9 @@ private:
 } // namespace
 
 
-## /* [code header](Data_-alpha-.md)() */
+## /* [code header](Data_-alpha-.md) */
 
-## /* [code trailer](Data_-omega-.md)() */
+## /* [code trailer](Data_-omega-.md) */
 
 
 /*

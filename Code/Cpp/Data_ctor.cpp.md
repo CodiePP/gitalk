@@ -8,7 +8,7 @@ plain constructor to create an instance of this class.
 Data::Data()
 	: _the_data(nullptr)
 {
-	
+	std::clog << "Data::Data()" << std::endl;
 }
 ~~~
 
