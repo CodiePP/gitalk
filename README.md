@@ -14,7 +14,7 @@ compile and run.
 
 3. cd tests
 
->$tests: g++
+>$tests: g++ -o utData utData.cpp ../Data.cpp -I.. -std=c++11
 
 4. run
 
