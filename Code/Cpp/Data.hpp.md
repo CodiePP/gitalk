@@ -23,6 +23,17 @@ private:
 
 } // namespace
 
+
+## /* code header */
+
+>//[code header](Data_-alpha-.md)();
+
+## /* code trailer */
+
+>//[code trailer](Data_-omega-.md)();
+
+
+
 /*
 
 There is more we need to put here for it to work nicely.
