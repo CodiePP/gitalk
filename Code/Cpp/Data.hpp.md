@@ -12,8 +12,10 @@ namespace [mine](namespace_mine.list) {
 {
 
 public:
+>	// the constructor is in good shape  :thumbsup:
 >	[Data](Data_ctor.cpp.md)();
 
+>	// the destructor needs more work  :point_up:
 >	virtual [~Data](Data_dtor.cpp.md)();
 
 private:
@@ -35,10 +37,8 @@ private:
 
 
 /*
-
 There is more we need to put here for it to work nicely.
 
 * ONe
 * Two
-
 */
