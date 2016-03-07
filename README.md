@@ -14,11 +14,17 @@ compile and run.
 
 3. cd tests
 
->$tests: g++ -o utData utData.cpp ../Data.cpp -I.. -std=c++11
+>$tests: g++ -g -o utData utData.cpp ../Data.cpp -I.. -std=c++11
 
 4. run
 
 >$tests: ./utData
+
+## features
+
+* combines source fragments from multiple files
+* preserves line number information in the code (debugging)
+* paste fragments from files with <fpaste ...>
 
 ## dependencies
 
@@ -27,5 +33,4 @@ this project depends on
 * [pandoc](http://pandoc.org/)
 
 * html2text
-
 

@@ -1,5 +1,5 @@
 
-
+<fpaste ../../LICENSE>
 
 ~~~ { .cpp }
 #pragma once

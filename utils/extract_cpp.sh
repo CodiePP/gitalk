@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # this script extracts blocks between 
 # ~~~ { .cpp }
@@ -12,26 +12,64 @@ if [ ! $# -eq 1 ]; then
 	exit 1
 fi
 
-TGT=$1
-if [ ! -e ${TGT} ]; then
-	#echo "file ${TGT} not found!"
+SRC=$1
+if [ ! -e ${SRC} ]; then
+	#echo "file ${SRC} not found!"
 	exit 1
 fi
 
-sed -ne '
+patstart='[~]{3}[ ]*[{][.][Cc][Pp][Pp][}]'
+patend='[~]{3}'
+patpaste='<fpaste '
+nl -ba ${SRC} | {
+	read n l
+	while [ -n "${n}" ]; do
+		if [[ "$l" =~ $patpaste ]]; then
+			FN=`echo $l | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
+			if [ -f "$FN" ]; then
+				cat "$FN"
+			else
+				echo "// missing file: ${FN}"
+			fi
+
+		elif [[ "$l" =~ $patstart ]]; then
+			echo "#line $((n+1)) \"${SRC}\""
+			read n l
+			while [ -n "${n}" ]; do
+				if [[ "$l" =~ $patend ]]; then
+					break
+				else	
+					echo "$l"
+					read n l
+				fi
+			done
+
+		else
+			#echo "// $l"
+			echo
+		fi
+
+		read n l
+	done
+}
+
+
+#sed -ne '
 # match .cpp
-/^[~][~][~].*[.][Cc][Pp][Pp]/ b more
-b fin
+#/^[~][~][~].*[.][Cc][Pp][Pp]/ b more
+#b fin
+#
+#:more
+#n
+## match three tildes
+#/^[~][~][~]/ b fin
+#
+#p
+#
+#b more
+#
+#:fin
+#' ${SRC}
 
-:more
-n
-# match three tildes
-/^[~][~][~]/ b fin
-
-p
-
-b more
-
-:fin
-' ${TGT}
+fpaste=`egrep '^<fpaste \(.*\)>' ${SRC}`
 

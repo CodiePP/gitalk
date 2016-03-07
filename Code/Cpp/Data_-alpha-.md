@@ -1,3 +1,7 @@
+## license
+
+<fpaste ../../LICENSE>
+
 ## includes
 
 ~~~ {.cpp}

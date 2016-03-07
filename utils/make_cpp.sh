@@ -43,21 +43,21 @@ fi
 # header
 if [ -e ${ALPHASRC} ]; then
 	echo "header ${ALPHASRC}"
-	echo "// parsed from source file ${ALPHASRC}" >> ${CPPSRC}
+	#echo "// parsed from source file ${ALPHASRC}" >> ${CPPSRC}
 	${INSTPATH}/extract_cpp.sh ${ALPHASRC} >> ${CPPSRC}
 fi
 
 # code fragments
 for F in `${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
 	echo "parsing c++ in ${F}"
-	echo "// parsed from source file $F" >> ${CPPSRC}
+	#echo "// parsed from source file $F" >> ${CPPSRC}
 	${INSTPATH}/extract_cpp.sh $F >> ${CPPSRC} 
 done
 
 # trailer
 if [ -e ${OMEGASRC} ]; then
 	echo "trailer ${OMEGASRC}"
-	echo "// parsed from source file ${OMEGASRC}" >> ${CPPSRC}
+	#echo "// parsed from source file ${OMEGASRC}" >> ${CPPSRC}
 	${INSTPATH}/extract_cpp.sh ${OMEGASRC} >> ${CPPSRC}
 fi
 
