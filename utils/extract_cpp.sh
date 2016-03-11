@@ -44,9 +44,8 @@ nl -ba ${SRC} | {
 				fi
 			done
 
-		else
-			#echo "// $l"
-			echo
+		#else
+			#echo
 		fi
 
 		read n l
