@@ -6,9 +6,7 @@ declared in [Data](Data.hpp.md)
 plain constructor to create an instance of this class.
 
 in the background it is calculating the data following this formula:
-![formula](https://raw.githubusercontent.com/CodiePP/gitalk/master/doc/formula01.mathml)
-
-![ncbi formula renderer](http://www.ncbi.nlm.nih.gov/pmc/utils/math/?file=&in-format=latex&latex-style=text&q=2^x%0D%0A&width=621)
+![ncbi formula renderer](http://www.ncbi.nlm.nih.gov/pmc/utils/math/?file=&in-format=latex&latex-style=text&q=2^x+1&width=621)
 
 ~~~ {.cpp}
 Data::Data()
