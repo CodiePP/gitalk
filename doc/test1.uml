@@ -1,0 +1,10 @@
+@startuml
+
+class Data {
+  +Data()
+  +Data(Data&)
+  __fields__
+  -void* _the_data
+}
+
+@enduml
