@@ -11,7 +11,7 @@ in the background it is calculating the data following this formula:
 > the math formula rendering is done at the [NCBI](http://www.ncbi.nlm.nih.gov/pmc/utils/math/)
 
 ## UML diagrams
-![UML class diagram](http://www.plantuml.com/plantuml/proxy?src=httpshttps://raw.githubusercontent.com/CodiePP/gitalk/master/doc/test101.uml)
+![UML class diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/CodiePP/gitalk/master/doc/test101.uml)
 > the UML diagram rendering is done at [plantuml](http://www.plantuml.com)
 
 ~~~ {.cpp}
