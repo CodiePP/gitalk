@@ -49,7 +49,7 @@ nl -ba ${HEADER} | {
 	done
 } >> ${BASENM}_t
 
-pandoc -f markdown -t html --ascii --self-contained ${BASENM}_t -o ${BASENM}.html
+pandoc -f markdown -t html --ascii ${BASENM}_t -o ${BASENM}.html
 
 html2text -nobs -ascii -width 132 -style pretty -o ${BASENM} ${BASENM}.html
 
