@@ -3,7 +3,7 @@
 literate programming on Github
 
 write your code in [markdown](https://guides.github.com/features/mastering-markdown/)
-parse it with the scripts in [utils[(./utils/)
+parse it with the scripts in [utils](./utils/)
 compile and run.
 
 ## example
