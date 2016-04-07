@@ -2,9 +2,9 @@
 
 literate programming on Github
 
-write your code in [markdown](https://guides.github.com/features/mastering-markdown/)
-parse it with the scripts in [utils](./utils/)
-compile and run.
+* write your code in [markdown](https://guides.github.com/features/mastering-markdown/)
+* parse it with the scripts in [utils](./utils/)
+* compile and run.
 
 ## example
 
@@ -24,7 +24,7 @@ compile and run.
 
 * combines source fragments from multiple files
 * preserves line number information in the code (debugging)
-* paste fragments from files with <fpaste ...>
+* paste fragments from files with &lt;fpaste ...&gt;
 
 ## dependencies
 
