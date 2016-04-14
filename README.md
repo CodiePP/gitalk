@@ -8,17 +8,24 @@ literate programming on Github
 
 ## example
 
-1. go to src/Cpp
+`1. go to the directory: src/Cpp
+```
+cd src/Cpp
+```
+`2. run script to generate source code
+```
+./mk_DataExample.sh
+```
+`3. change to tests directory
+```
+cd tests
 
-2. run ./mk_DataExample.sh
-
-3. cd tests
-
->$tests: g++ -g -o utData utData.cpp ../Data.cpp -I.. -std=c++11
-
-4. run
-
->$tests: ./utData
+g++ -g -o utData utData.cpp ../Data.cpp -I.. -std=c++11
+```
+`4. run
+```
+./utData
+```
 
 ## features
 
