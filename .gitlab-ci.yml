@@ -9,4 +9,5 @@ make:
 test:
     script:
         - cd src/Cpp/tests
+        - ls -l
         - ./utData
