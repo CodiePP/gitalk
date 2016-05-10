@@ -5,6 +5,7 @@ make:
     script:
         - cd src/Cpp/tests
         - g++ -g -o utData utData.cpp ../Data.cpp -I.. -std=c++11
+        - ls -l
 
 test:
     script:
