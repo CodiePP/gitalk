@@ -1,5 +1,5 @@
 before_script:
-    - cd src/Cpp; ./mk_DataExample.sh; cd ../../
+    - cd src/Cpp; sh ./mk_DataExample.sh; cd ../../
 
 make:
     script:
