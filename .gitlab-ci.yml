@@ -1,0 +1,11 @@
+before_script:
+    - cd src/Cpp; ./mk_DataExample.sh; cd ../../
+
+make:
+    script:
+        - cd tests
+        - g++ -g -o utData utData.cpp ../Data.cpp -I.. -std=c++11
+
+test:
+    script:
+        - ./utData
