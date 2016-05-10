@@ -3,9 +3,10 @@ before_script:
 
 make:
     script:
-        - cd tests
+        - cd src/Cpp/tests
         - g++ -g -o utData utData.cpp ../Data.cpp -I.. -std=c++11
 
 test:
     script:
+        - cd src/Cpp/tests
         - ./utData
