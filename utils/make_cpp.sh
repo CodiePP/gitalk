@@ -27,7 +27,7 @@ CPPSRC=`basename ${HEADER} .hpp.md`.cpp
 
 if [ -e ${CPPSRC} ]; then
 	# code fragments
-	for F in `bash -c ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
+	for F in `bash ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
 		if [ ${F} -nt ${CPPSRC} ]; then
 			rm -v ${CPPSRC}
 			break
@@ -44,20 +44,20 @@ fi
 if [ -e ${ALPHASRC} ]; then
 	echo "header ${ALPHASRC}"
 	#echo "// parsed from source file ${ALPHASRC}" >> ${CPPSRC}
-	bash -c ${INSTPATH}/extract_cpp.sh ${ALPHASRC} >> ${CPPSRC}
+	bash  ${INSTPATH}/extract_cpp.sh ${ALPHASRC} >> ${CPPSRC}
 fi
 
 # code fragments
-for F in `bash -c ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
+for F in `bash ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
 	echo "parsing c++ in ${F}"
 	#echo "// parsed from source file $F" >> ${CPPSRC}
-	bash -c ${INSTPATH}/extract_cpp.sh $F >> ${CPPSRC} 
+	bash  ${INSTPATH}/extract_cpp.sh $F >> ${CPPSRC} 
 done
 
 # trailer
 if [ -e ${OMEGASRC} ]; then
 	echo "trailer ${OMEGASRC}"
 	#echo "// parsed from source file ${OMEGASRC}" >> ${CPPSRC}
-	bash -c ${INSTPATH}/extract_cpp.sh ${OMEGASRC} >> ${CPPSRC}
+	bash  ${INSTPATH}/extract_cpp.sh ${OMEGASRC} >> ${CPPSRC}
 fi
 
