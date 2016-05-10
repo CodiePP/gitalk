@@ -48,7 +48,7 @@ if [ -e ${ALPHASRC} ]; then
 fi
 
 # code fragments
-for F in `${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
+for F in `bash -c ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
 	echo "parsing c++ in ${F}"
 	#echo "// parsed from source file $F" >> ${CPPSRC}
 	bash -c ${INSTPATH}/extract_cpp.sh $F >> ${CPPSRC} 
