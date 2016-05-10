@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 for HPP in `bash ../../utils/find_hpp.sh ../../Code/Cpp/DataExample.md`; do
   bash ../../utils/make_hpp.sh ${HPP}
