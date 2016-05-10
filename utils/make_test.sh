@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # this script scans a header page
 # and for every .cpp.md found
@@ -21,11 +21,11 @@ if [ ! -e ${HEADER} ]; then
 fi
 
 # code fragments
-for F in `${INSTPATH}/find_cpp.sh ${HEADER}`; do 
+for F in `bash ${INSTPATH}/find_cpp.sh ${HEADER}`; do 
 	CPPSRC=`basename ${F} .md`
 	if [ ! -e $CPPSRC -o $F -nt $CPPSRC ]; then
 		echo "parsing c++ in ${F}"
-		${INSTPATH}/extract_cpp.sh $F > ${CPPSRC} 
+		bash ${INSTPATH}/extract_cpp.sh $F > ${CPPSRC} 
 	else
 		echo "no change in ${F}"
 	fi
