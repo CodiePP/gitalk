@@ -27,6 +27,7 @@ nl -ba ${SRC} | {
 		if [[ "$l" =~ $patpaste ]]; then
 			FN=`echo $l | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
 			if [ -f "$FN" ]; then
+				echo "#line 1 ${FN}"
 				cat "$FN"
 			else
 				echo "// missing file: ${FN}"
