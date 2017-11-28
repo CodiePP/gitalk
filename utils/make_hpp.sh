@@ -32,10 +32,8 @@ nl -ba ${HEADER} | {
 		if [[ $l =~ $patpaste ]]; then
 			FN=`echo "$l" | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
                         if [ -f "$FN" ]; then
-				echo "// reading file: ${FN}"
-				echo
+				echo "#line 1 ${FN}"
 				cat "$FN"
-				echo
 				echo "\\#line $((n+1)) \"${HEADER}\""
 				echo
 			else
