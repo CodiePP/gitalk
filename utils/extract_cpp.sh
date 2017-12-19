@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # this script extracts blocks between 
-# ~~~ { .cpp }
+# ~~~ cpp
 # and
 # ~~~
 # and writes them to stdout
 #
+# also recognises:  ~~~c++
 
 if [ ! $# -eq 1 ]; then
 	echo "Usage: $0 <input file>"
@@ -19,7 +20,7 @@ if [ ! -e ${SRC} ]; then
 fi
 
 #patstart='[~]{3}[ ]*[{][ ]*[.][Cc][Pp][Pp][ ]*[}]'
-patstart='[`]{3}[Cc][Pp][Pp]'
+patstart='[`]{3}[Cc][\+Pp][\+Pp]'
 #patend='[~]{3}'
 patend='[`]{3}'
 patpaste='<fpaste '
