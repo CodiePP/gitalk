@@ -12,6 +12,7 @@ if [ ! $# -eq 1 ]; then
 fi
 
 INSTPATH=`dirname $0`
+. ${INSTPATH}/colors.sh
 
 HEADER=$1
 INDIR=`dirname ${HEADER}`

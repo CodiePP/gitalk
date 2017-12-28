@@ -5,6 +5,9 @@ if [ ! $# -eq 1 ]; then
 	exit 1
 fi
 
+INSTPATH=`dirname $0`
+. ${INSTPATH}/colors.sh
+
 HEADER=$1
 if [ ! -e ${HEADER} ]; then
 	#echo "cannot find header file: ${HEADER}"
@@ -14,7 +17,7 @@ fi
 BASENM=`basename ${HEADER} .md`
 
 if [ ${BASENM} -nt ${HEADER} ]; then
-	echo "no new update to file ${BASENAME}" 
+	prtLightGray "no new update to file ${BASENM}"; echo
 	exit 1
 fi
 

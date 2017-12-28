@@ -11,12 +11,13 @@ if [ ! $# -eq 1 ]; then
 fi
 
 INSTPATH=`dirname $0`
+. ${INSTPATH}/colors.sh
 
 HEADER=$1
 INDIR=`dirname ${HEADER}`
 
 if [ ! -e ${HEADER} ]; then
-	echo "cannot find header file: ${HEADER}"
+	#echo "cannot find header file: ${HEADER}"
 	exit 1
 fi
 
@@ -24,10 +25,10 @@ fi
 for F in `bash ${INSTPATH}/find_cpp.sh ${HEADER}`; do 
 	CPPSRC=`basename ${F} .md`
 	if [ ! -e $CPPSRC -o $F -nt $CPPSRC ]; then
-		echo "parsing c++ in ${F}"
+		echo -n "parsing c++ in "; prtBrown ${F}; echo
 		bash ${INSTPATH}/extract_cpp.sh $F > ${CPPSRC} 
 	else
-		echo "no change in ${F}"
+		prtLightGray "no change in ${F}"; echo
 	fi
 done
 
