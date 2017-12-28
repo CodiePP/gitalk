@@ -7,7 +7,7 @@ fi
 
 HEADER=$1
 if [ ! -e ${HEADER} ]; then
-	echo "cannot find header file: ${HEADER}"
+	#echo "cannot find header file: ${HEADER}"
 	exit 1
 fi
 
@@ -52,9 +52,9 @@ pandoc -f markdown -t html --ascii ${BASENM}_t -o ${BASENM}.html
 html2text -nobs -ascii -width 132 -style pretty -o ${BASENM} ${BASENM}.html
 
 if [ -e ${BASENM}_t ]; then
-	rm -v ${BASENM}_t
+	rm ${BASENM}_t
 fi
 if [ -e ${BASENM}.html ]; then
-	rm -v ${BASENM}.html
+	rm ${BASENM}.html
 fi
 

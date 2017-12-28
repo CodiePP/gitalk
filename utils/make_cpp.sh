@@ -17,7 +17,7 @@ HEADER=$1
 INDIR=`dirname ${HEADER}`
 
 if [ ! -e ${HEADER} ]; then
-	echo "cannot find header file: ${HEADER}"
+	#echo "cannot find header file: ${HEADER}"
 	exit 1
 fi
 
@@ -29,34 +29,33 @@ if [ -e ${CPPSRC} ]; then
 	# code fragments
 	for F in `bash ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
 		if [ ${F} -nt ${CPPSRC} ]; then
-			rm -v ${CPPSRC}
+			rm ${CPPSRC}
 			break
 		fi
 	done
 	if [ -e ${CPPSRC} -a ${CPPSRC} -nt ${ALPHASRC} -a ${CPPSRC} -nt ${OMEGASRC} -a ${CPPSRC} -nt ${HEADER} ]; then
-		echo "output c++ source file still consistent! ${CPPSRC}"
+		prtLightGray "output c++ source file still consistent! ${CPPSRC}"; echo
 		exit 1
 	fi
-	rm -v ${CPPSRC}
+	rm ${CPPSRC}
 fi
 
 # header
 if [ -e ${ALPHASRC} ]; then
-	echo "header ${ALPHASRC}"
+	echo -n "header "; prtBrown ${ALPHASRC}; echo
 	#echo "// parsed from source file ${ALPHASRC}" >> ${CPPSRC}
 	bash  ${INSTPATH}/extract_cpp.sh ${ALPHASRC} >> ${CPPSRC}
 fi
 
 # code fragments
 for F in `bash ${INSTPATH}/find_cpp.sh ${HEADER} | sort | uniq`; do 
-	echo "parsing c++ in ${F}"
-	#echo "// parsed from source file $F" >> ${CPPSRC}
+	echo -n "parsing c++ in "; prtBrown ${F}; echo
 	bash  ${INSTPATH}/extract_cpp.sh $F >> ${CPPSRC} 
 done
 
 # trailer
 if [ -e ${OMEGASRC} ]; then
-	echo "trailer ${OMEGASRC}"
+	echo -n "trailer "; prtBrown ${OMEGASRC}; echo
 	#echo "// parsed from source file ${OMEGASRC}" >> ${CPPSRC}
 	bash  ${INSTPATH}/extract_cpp.sh ${OMEGASRC} >> ${CPPSRC}
 fi

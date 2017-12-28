@@ -8,7 +8,7 @@ PURPLE="\033[35m"
 CYAN="\033[36m"
 LIGRAY="\033[37m"
 
-Closing="\033[m"
+Closing="\033[0m"
 
 function prtRed {
   echo -n -e ${RED} $* ${Closing}
