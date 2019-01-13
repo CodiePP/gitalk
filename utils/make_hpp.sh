@@ -35,7 +35,7 @@ nl -ba ${HEADER} | {
 		if [[ $l =~ $patpaste ]]; then
 			FN=`echo "$l" | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
                         if [ -f "$FN" ]; then
-				echo "#line 1 ${FN}"
+				echo "#line 1 \"${FN}\""
 				cat "$FN"
 				echo "\\#line $((n+1)) \"${HEADER}\""
 				echo
@@ -54,8 +54,14 @@ pandoc -f markdown -t html --ascii ${BASENM}_t -o ${BASENM}.html
 
 html2text -nobs -ascii -width 132 -style pretty -o ${BASENM} ${BASENM}.html
 
+# replace some annoying characters
+sed -i -e 's/&#822[01];/"/g;' ${BASENM}
+
 if [ -e ${BASENM}_t ]; then
 	rm ${BASENM}_t
+fi
+if [ -e ${BASENM}-e ]; then
+	rm ${BASENM}-e
 fi
 if [ -e ${BASENM}.html ]; then
 	rm ${BASENM}.html
