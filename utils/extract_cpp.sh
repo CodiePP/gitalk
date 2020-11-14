@@ -27,11 +27,12 @@ patpaste='<fpaste '
 nl -ba ${SRC} | {
 	read n l
 	while [ -n "${n}" ]; do
-		if [[ "$l" =~ $patpaste ]]; then
+		if [[ "$l" =~ "$patpaste" ]]; then
 			FN=`echo $l | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
 			if [ -f "$FN" ]; then
 				echo "#line 1 ${FN}"
 				cat "$FN"
+				echo "\\#line $((n+1)) \"${SRC}\""
 			else
 				echo "// missing file: ${FN}"
 			fi
@@ -40,11 +41,21 @@ nl -ba ${SRC} | {
 			echo "#line $((n+1)) \"${SRC}\""
 			read n l
 			while [ -n "${n}" ]; do
-				if [[ "$l" =~ $patend ]]; then
-					break
-				else	
-					echo "$l"
-					read n l
+        if [[ "$l" =~ $patend ]]; then
+          break
+        elif [[ "$l" =~ "$patpaste" ]]; then
+          FN=`echo $l | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
+          if [ -f "$FN" ]; then
+            echo "#line 1 ${FN}"
+            cat "$FN"
+            echo "\\#line $((n+1)) \"${SRC}\""
+          else
+            echo "// missing file: ${FN}"
+          fi
+          read n l
+        else	
+          echo "$l"
+          read n l
 				fi
 			done
 
@@ -73,6 +84,4 @@ nl -ba ${SRC} | {
 #
 #:fin
 #' ${SRC}
-
-fpaste=`egrep '^<fpaste \(.*\)>' ${SRC}`
 
