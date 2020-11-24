@@ -14,6 +14,12 @@ if [ ! -e ${HEADER} ]; then
 	exit 1
 fi
 
+UNAME=$(uname -s)
+SED=sed
+if [ $UNAME = "Darwin" ]; then
+  SED=gsed
+fi
+
 BASENM=`basename ${HEADER} .md`
 
 if [ ${BASENM} -nt ${HEADER} ]; then
@@ -33,7 +39,7 @@ nl -ba ${HEADER} | {
 	echo
 	while [ -n "$n" ]; do
 		if [[ $l =~ $patpaste ]]; then
-			FN=`echo "$l" | sed -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
+			FN=`echo "$l" | $SED -ne 's/[<]fpaste[ ]*\(.*\)[>].*/\1/p'`
                         if [ -f "$FN" ]; then
 				echo "#line 1 \"${FN}\""
 				cat "$FN"
@@ -52,14 +58,18 @@ nl -ba ${HEADER} | {
 
 pandoc -f markdown -t html --ascii ${BASENM}_t -o ${BASENM}.html
 
+if [ ! -e ${BASENM} ]; then
+  touch ${BASENM}
+fi
+
 html2text -nobs -ascii -width 132 -o ${BASENM} ${BASENM}.html
 
 # replace some annoying characters
-sed -i -e 's/&#822[01];/"/g;s/&#x201[CD];/"/g;' ${BASENM}
-sed -i -e 's/^\*\*\*\*\*\* //;' ${BASENM}
-sed -i -e 's/^\*\*\*\*\* //;' ${BASENM}
-sed -i -e 's/ \*\*\*\*\*\*$//;' ${BASENM}
-sed -i -e 's/ \*\*\*\*\*$//;' ${BASENM}
+$SED -i -e 's/&#822[01];/"/g;s/&#x201[CD];/"/g;' ${BASENM}
+$SED -i -e 's/^\*\*\*\*\*\* //;' ${BASENM}
+$SED -i -e 's/^\*\*\*\*\* //;' ${BASENM}
+$SED -i -e 's/ \*\*\*\*\*\*$//;' ${BASENM}
+$SED -i -e 's/ \*\*\*\*\*$//;' ${BASENM}
 
 if [ -e ${BASENM}_t ]; then
 	rm ${BASENM}_t
