@@ -52,10 +52,14 @@ nl -ba ${HEADER} | {
 
 pandoc -f markdown -t html --ascii ${BASENM}_t -o ${BASENM}.html
 
-html2text -nobs -ascii -width 132 -style pretty -o ${BASENM} ${BASENM}.html
+html2text -nobs -ascii -width 132 -o ${BASENM} ${BASENM}.html
 
 # replace some annoying characters
 sed -i -e 's/&#822[01];/"/g;s/&#x201[CD];/"/g;' ${BASENM}
+sed -i -e 's/^\*\*\*\*\*\* //;' ${BASENM}
+sed -i -e 's/^\*\*\*\*\* //;' ${BASENM}
+sed -i -e 's/ \*\*\*\*\*\*$//;' ${BASENM}
+sed -i -e 's/ \*\*\*\*\*$//;' ${BASENM}
 
 if [ -e ${BASENM}_t ]; then
 	rm ${BASENM}_t
