@@ -1,19 +1,27 @@
 #!/usr/bin/env bash
 
 # this script extracts blocks between 
-# ~~~ cpp
+# ```cpp
 # and
-# ~~~
+# ```
 # and writes them to stdout
 #
-# also recognises:  ~~~c++
+# also recognises:  ```c++
 
-if [ ! $# -eq 1 ]; then
-	echo "Usage: $0 <input file>"
+if [ $# -eq 1 ]; then
+  SRC=$1
+  TGT=/dev/stdout
+elif [ $# -eq 2 ]; then
+  SRC=$1
+  TGT=$2
+  if [ -e ${TGT} ]; then
+    exit 1
+  fi
+else
+	echo "Usage: $0 <input file> [<output file>]"
 	exit 1
 fi
 
-SRC=$1
 if [ ! -e ${SRC} ]; then
 	#echo "file ${SRC} not found!"
 	exit 1
@@ -65,8 +73,9 @@ nl -ba ${SRC} | {
 
 		read n l
 	done
-}
+} > $TGT
 
+exit 0
 
 #sed -ne '
 # match .cpp
