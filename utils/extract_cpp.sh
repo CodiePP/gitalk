@@ -73,7 +73,7 @@ nl -ba ${SRC} | {
 
 		read n l
 	done
-} > $TGT
+} >> $TGT
 
 exit 0
 
