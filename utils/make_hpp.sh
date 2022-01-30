@@ -17,7 +17,7 @@ fi
 UNAME=$(uname -s)
 SED=sed
 if [ $UNAME = "Darwin" ]; then
-  SED=gsed
+  SED=${SED:-gsed}
 fi
 
 BASENM=`basename ${HEADER} .md`
