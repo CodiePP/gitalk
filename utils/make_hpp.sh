@@ -58,11 +58,13 @@ nl -ba ${HEADER} | {
 
 pandoc -f markdown -t html --ascii ${BASENM}_t -o ${BASENM}.html
 
+$SED -i -e 's/&#822[01];/"/g;s/&#x201[CD];/"/g;' ${BASENM}.html
+
 if [ ! -e ${BASENM} ]; then
   touch ${BASENM}
 fi
 
-html2text -nobs -ascii -width 132 -o ${BASENM} ${BASENM}.html
+html2text -nobs -to_encoding ASCII -width 232 -o ${BASENM} ${BASENM}.html
 
 # replace some annoying characters
 $SED -i -e 's/&#822[01];/"/g;s/&#x201[CD];/"/g;' ${BASENM}
@@ -79,5 +81,8 @@ if [ -e ${BASENM}-e ]; then
 fi
 if [ -e ${BASENM}.html ]; then
 	rm ${BASENM}.html
+fi
+if [ -e ${BASENM}.html-e ]; then
+	rm ${BASENM}.html-e
 fi
 
