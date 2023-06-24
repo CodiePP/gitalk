@@ -1,0 +1,32 @@
+:100755 100755 f1c6b7e 0000000 M	configure
+:100644 100644 ca872e0 0000000 M	iconvstream.cpp
+
+diff --git a/configure b/configure
+index f1c6b7e..99bba98 100755
+--- a/configure
++++ b/configure
+@@ -90,7 +90,7 @@ int main() {
+   return 0;
+ }
+ EOF
+-for i in "" "-lbsocket" "-lbsocket -lnsl" "-lsocket" "-lsocket -lnsl"; do
++for i in "" "-lbsocket" "-lbsocket -lnsl" "-lsocket" "-lsocket -lnsl" "-lwsock32 -lws2_32"; do
+   if $CXX $tmp_file.C $i -o $tmp_file 2>/dev/null; then
+     SOCKET_LIBRARIES="$i";
+     break;
+diff --git a/iconvstream.cpp b/iconvstream.cpp
+index ca872e0..47af3f2 100644
+--- a/iconvstream.cpp
++++ b/iconvstream.cpp
+@@ -145,7 +145,11 @@ find_tokens(char *buf, size_t len, const char **tokens)
+ 		{
+ 			if (startp != NULL) {
+ 				if (*curtoken == NULL) {
++#ifdef _WIN32
++					return strdup(startp);  /* LEAK */
++#else
+ 					return strndup(startp, curp - startp);  /* LEAK */
++#endif
+ 				} else if (strlen(*curtoken) == (size_t)(curp - startp) &&
+ 						   strncasecmp(*curtoken, startp, curp - startp) == 0)
+ 				{
