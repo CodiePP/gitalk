@@ -20,6 +20,18 @@ if [ $UNAME = "Darwin" ]; then
   SED=${SED:-gsed}
 fi
 
+if [ -z "${HTML2TEXT}" ]; then
+        echo "don't know html2text!"
+        HTML2TEXT=html2text
+elif [ ! -e ${HTML2TEXT} ]; then
+        echo "unknown html2text: ${HTML2TEXT}!"
+        HTML2TEXT=html2text
+fi
+if [ ! -e ${HTML2TEXT} ]; then
+        echo "unknown html2text: ${HTML2TEXT}!"
+        exit 1
+fi
+
 BASENM=`basename ${HEADER} .md`
 
 if [ ${BASENM} -nt ${HEADER} ]; then
@@ -64,7 +76,7 @@ if [ ! -e ${BASENM} ]; then
   touch ${BASENM}
 fi
 
-html2text -nobs -to_encoding ASCII -width 232 -o ${BASENM} ${BASENM}.html
+${HTML2TEXT} -nobs -to_encoding ASCII -width 232 -o ${BASENM} ${BASENM}.html
 
 # replace some annoying characters
 $SED -i -e 's/&#822[01];/"/g;s/&#x201[CD];/"/g;' ${BASENM}
